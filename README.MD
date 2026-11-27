@@ -1,43 +1,44 @@
 # Direct Strike Bank Unlocker (StarCraft II)
 
-Outil Python en ligne de commande permettant d'éditer et de re-signer proprement les sauvegardes locales (`.SC2Bank`) de la carte Arcade **Direct Strike** sur StarCraft II : définition du niveau de maîtrise (de `1` à `2 400`) et activation optionnelle de l'upgrade `PremiumReward` en partie.
+Command-line Python tool for cleanly editing and re-signing local save files (`.SC2Bank`) for the **Direct Strike** Arcade map in StarCraft II: set your mastery level (from `1` to `2,400`) and optionally enable the `PremiumReward` upgrade in-game.
 
-> **Avertissement** — Projet publié à des fins éducatives et de rétro-ingénierie des formats `.SC2Bank` et Galaxy Script. Utilisez cet outil à vos risques et périls ; une copie de sauvegarde (`.SC2Bank.bak`) est automatiquement créée avant toute modification.
-
----
-
-## Fonctionnalités
-
-* **Détection automatique multi-comptes et multi-régions** : scanne automatiquement `Documents` et `OneDrive` pour détecter les profils Battle.net (EU, US, KR) ainsi que les identifiants auteur/joueur requis pour la signature.
-* **Définition précise du niveau (`1` à `2 400`)** : calcule l'XP exact correspondant au niveau souhaité selon la courbe officielle du jeu (jusqu'au plafond de `953 210 000` XP au niveau `2 400`) tout en conservant intacts vos compteurs existants (parties, victoires, kills, pertes).
-* **Recalcul complet des signatures** : régénère à la volée le code de maîtrise (`1VC1C5S8E4C3KL65`) et la balise native `<Signature>` (SHA-1) de StarCraft II.
-* **Activation optionnelle de `PremiumReward`** : injecte une section valide dans `Starlight.SC2Bank` pour activer les avantages locaux liés à `PremiumReward` (+30 points de maîtrise, personnalisation de la zone de préparation, récompenses associées).
-* **Zéro dépendance externe** : fonctionne uniquement avec la bibliothèque standard de Python 3.
+> **Disclaimer** — Project published for educational purposes and reverse-engineering of `.SC2Bank` and Galaxy Script formats. Use this tool at your own risk; a backup copy (`.SC2Bank.bak`) is automatically created before any modification.
 
 ---
 
-## Portée et limites
+## Features
 
-| Contenu | Pris en charge | Explication |
+- **Automatic multi-account and multi-region detection**: automatically scans `Documents` and `OneDrive` to detect Battle.net profiles (EU, US, KR) as well as the author/player IDs required for signing.
+- **Precise level setting (`1` to `2,400`)**: calculates the exact XP corresponding to the desired level based on the game's official curve (up to the cap of `953,210,000` XP at level `2,400`) while keeping your existing counters intact (games, wins, kills, losses).
+- **Full signature recalculation**: regenerates the mastery code (`1VC1C5S8E4C3KL65`) and StarCraft II's native `<Signature>` tag (SHA-1) on the fly.
+- **Optional `PremiumReward` activation**: injects a valid section into `Starlight.SC2Bank` to enable local `PremiumReward` perks (+30 mastery points, staging area customization, associated rewards).
+- **Zero external dependencies**: runs exclusively on the Python 3 standard library.
+
+---
+
+## Scope and Limitations
+
+| Content | Supported | Explanation |
 | :--- | :---: | :--- |
-| Niveau de maîtrise (`1` à `2 400`), badges, étoiles et points de maîtrise | **Oui** | Stocké localement dans `llIIIllllllIIIll.SC2Bank`. |
-| Statut `PremiumReward` en partie (+30 points, personnalisation de zone, ouvriers/décorations liés) | **Oui** | Déclenché via la section `IIlIlIlIIIlllllI` de `Starlight.SC2Bank`. |
-| Modes / lobbies payants (Commanders premium, bonus timer AFK) | **Non** | Vérifié côté Battle.net via la licence (`PlayerHasLicense`). |
-| Skins Vespene et packs abonnés (Patreon) | **Non** | Contrôlé par des listes blanches d'identifiants codées en dur dans les archives `.s2ma`. |
+| Mastery level (`1` to `2,400`), badges, stars, and mastery points | **Yes** | Stored locally in `llIIIllllllIIIll.SC2Bank`. |
+| In-game `PremiumReward` status (+30 points, staging area customization, associated workers/decorations) | **Yes** | Triggered via the `IIlIlIlIIIlllllI` section of `Starlight.SC2Bank`. |
+| Paid modes / lobbies (premium Commanders, AFK timer bonus) | **No** | Verified server-side on Battle.net via license check (`PlayerHasLicense`). |
+| Vespene skins and subscriber packs (Patreon) | **No** | Controlled by hardcoded ID whitelists inside the `.s2ma` archives. |
 
 ---
 
-## Prérequis
+## Prerequisites
 
-* **Python 3.10+** installé sur votre machine.
-* Avoir déjà lancé **au moins une partie normale** (hors mode Sandbox) sur Direct Strike afin que les fichiers `.SC2Bank` existent dans votre dossier StarCraft II.
-* **Fermer complètement StarCraft II** avant toute exécution du script.
+- **Python 3.10+** installed on your machine.
+- Having already played **at least one normal match** (outside Sandbox mode) on Direct Strike so that the `.SC2Bank` files exist in your StarCraft II folder.
+- **Completely close StarCraft II** before running the script.
 
 ---
 
-## Utilisation
+## Usage
 
-1. Téléchargez `direct_strike_unlocker.py` (ou clonez le dépôt) :
+1. Download `direct_strike_unlocker.py` (or clone the repository):
    ```bash
-   git clone [https://github.com/](https://github.com/)<votre-utilisateur>/<votre-repo>.git
-   cd <votre-repo>
+   git clone [https://github.com/](https://github.com/)<your-username>/<your-repo>.git
+   cd <your-repo>
+   ```
